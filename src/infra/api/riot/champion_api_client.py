@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-import ConfigParser
 from riot_api_client import RiotApiClient
 from champion import Champion
 
@@ -14,7 +12,7 @@ class ChampionApiClient(RiotApiClient):
     def champions(self, champ_data="all"):
         path = self.path
         params = {"champData": champ_data}
-        response = super(ChampionApiClient, self).get(path, params)
+        response = super(ChampionApiClient, self).get(self.path, params)
         data = response["data"]
         champions = []
         for key, info in data.items():
