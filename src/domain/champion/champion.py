@@ -12,4 +12,5 @@ class Champion(object):
         self.__e = e
         self.__r = r
 
-        
+    def get_q(self):
+        return self.__q

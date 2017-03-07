@@ -27,7 +27,7 @@ class ChampionApiClient(RiotApiClient):
             for spell_info in info["spells"]:
                 s = self.__parse_spell(spell_info)
                 spells.append(s)
-                
+
             # チャンピオンのparse
             champion_image = self.__parse_image(info["image"])
             c = Champion(
