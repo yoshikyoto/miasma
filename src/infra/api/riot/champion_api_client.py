@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import requests
 import json
 from riot_api_client import RiotApiClient
 
