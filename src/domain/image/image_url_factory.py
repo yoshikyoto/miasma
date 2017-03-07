@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-
 import sys
 sys.path.append('../../')
 from infra.api.riot import RealmApiClient
 
-class ImageUrlFacotry(object):
+class ImageUrlFactory(object):
 
     def __init__(self):
         self.realm_api = RealmApiClient()
