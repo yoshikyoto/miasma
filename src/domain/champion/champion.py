@@ -12,5 +12,17 @@ class Champion(object):
         self.__e = e
         self.__r = r
 
+    def get_id(self):
+        return self.__id
+
+    def get_key(self):
+        return self.__key
+
+    def get_name(self):
+        return self.__name
+
+    def get_icon_url(self):
+        return self.__icon_url
+
     def get_q(self):
         return self.__q
