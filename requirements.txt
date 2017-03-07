@@ -1,9 +1,5 @@
 Flask==0.10.1
-grip==3.3.0
 gunicorn==19.7.0
-httplib2==0.10.3
-itsdangerous==0.24
-Jinja2==2.8
 livereload==2.4.0
 lockfile==0.10.2
 lxml==3.5.0
