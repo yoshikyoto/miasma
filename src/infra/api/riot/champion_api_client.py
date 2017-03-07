@@ -22,9 +22,11 @@ class ChampionApiClient(RiotApiClient):
             champions.append(c)
         return champions
 
-    
+
 if __name__ == "__main__":
     api = ChampionApiClient()
     champions = api.champions()
-    for champ in champions:
-        print champ.get_name()
+    c = champions[0];
+    print c.get_id()
+    print c.get_key()
+    print c.get_name()
