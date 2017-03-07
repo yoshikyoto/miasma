@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.append('../../')
+sys.path.append('src') #heroku run での実行用
 from domain.champion import ChampionRepository
 
 repository = ChampionRepository()
