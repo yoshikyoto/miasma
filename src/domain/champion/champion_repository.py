@@ -55,10 +55,14 @@ class ChampionRepository(object):
         champions = []
         for c in data:
             champions.append(Champion(
-                data["id"],
-                data["key"],
-                data["name"],
-                data["icon_url"]))
+                c["id"],
+                c["key"],
+                c["name"],
+                c["icon_url"],
+                None,
+                None,
+                None,
+                None))
         return champions
 
     def store_cache(self, champion):
