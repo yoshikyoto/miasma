@@ -2,6 +2,7 @@
 import json
 import ConfigParser
 from riot_api_client import RiotApiClient
+from champion import Champion
 
 import sys
 sys.path.append('../../../')
@@ -16,7 +17,12 @@ class ChampionApiClient(RiotApiClient):
 
     def champions(self):
         path = self.path
-        return super(ChampionApiClient, self).get(path)
+        response = super(ChampionApiClient, self).get(path)
+        champions = []
+        for champion_response in response["champions"]:
+            c = Champion(champion_response["id"])
+            champions.append(c)
+        return champions
 
 if __name__ == "__main__":
     api = ChampionApiClient()
