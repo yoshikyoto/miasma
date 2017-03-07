@@ -4,26 +4,27 @@ import ConfigParser
 from riot_api_client import RiotApiClient
 from champion import Champion
 
-import sys
-sys.path.append('../../../')
-from config import config
-
 class ChampionApiClient(RiotApiClient):
 
     def __init__(self):
         super(ChampionApiClient, self).__init__()
-        self.path = "/api/lol/jp/v1.2/champion"
-        self.api_key = config.RIOT_API_KEY
+        self.base_url = "https://global.api.pvp.net"
+        self.path = "/api/lol/static-data/jp/v1.2/champion"
 
-    def champions(self):
+    def champions(self, champ_data="all"):
         path = self.path
-        response = super(ChampionApiClient, self).get(path)
+        params = {"champData": champ_data}
+        response = super(ChampionApiClient, self).get(path, params)
+        data = response["data"]
         champions = []
-        for champion_response in response["champions"]:
-            c = Champion(champion_response["id"])
+        for key, info in data.items():
+            c = Champion(int(info["id"]), key, info["name"])
             champions.append(c)
         return champions
 
+    
 if __name__ == "__main__":
     api = ChampionApiClient()
-    print api.champions()
+    champions = api.champions()
+    for champ in champions:
+        print champ.get_name()
