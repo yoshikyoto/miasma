@@ -11,5 +11,5 @@ class ChampionApiClient(RiotApiClient):
         self.api_key = api_key
 
     def champions(self):
-        path = self.path + "?api_key=" + self.api_key
+        path = self.path
         return super(ChampionApiClient, self).get(path)

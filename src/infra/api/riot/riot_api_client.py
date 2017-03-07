@@ -6,7 +6,7 @@ class RiotApiClient(object):
     def __init__(self):
         self.base_url = "https://jp.api.pvp.net"
 
-    def get(self, path):
+    def get(self, path, params={}):
         url = self.base_url + path
-        print "get " + url
-        return requests.get(url).json()
+        params["api_key"] = self.api_key
+        return requests.get(url, params=params).json()
