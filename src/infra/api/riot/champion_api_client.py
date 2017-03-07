@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from riot_api_client import RiotApiClient
 from champion import Champion
+from image import Image
 
 class ChampionApiClient(RiotApiClient):
 
@@ -17,6 +18,11 @@ class ChampionApiClient(RiotApiClient):
         champions = []
         for key, info in data.items():
             c = Champion(int(info["id"]), key, info["name"])
+            img = Image(
+                info["image"]["full"],
+                info["image"]["w"],
+                info["image"]["h"],
+                info["image"]["group"])
             champions.append(c)
         return champions
 
