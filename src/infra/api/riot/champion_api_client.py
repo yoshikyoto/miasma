@@ -11,18 +11,21 @@ class ChampionApiClient(RiotApiClient):
         self.path = "/api/lol/static-data/jp/v1.2/champion"
 
     def champions(self, champ_data="all"):
+        """
+        チャンピオン一覧を取得し、champion.Champion オブジェクトを返します
+        """
         path = self.path
         params = {"champData": champ_data}
         response = super(ChampionApiClient, self).get(self.path, params)
         data = response["data"]
         champions = []
         for key, info in data.items():
-            c = Champion(int(info["id"]), key, info["name"])
             img = Image(
                 info["image"]["full"],
                 info["image"]["w"],
                 info["image"]["h"],
                 info["image"]["group"])
+            c = Champion(int(info["id"]), key, info["name"], img)
             champions.append(c)
         return champions
 
@@ -34,3 +37,4 @@ if __name__ == "__main__":
     print c.get_id()
     print c.get_key()
     print c.get_name()
+    print c.get_image().get_filename()
