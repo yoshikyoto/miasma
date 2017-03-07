@@ -9,7 +9,10 @@ class ChampionService(object):
         self.__repository = ChampionRepository()
 
     def champions_dict(self):
-        champions = self.__repository.champions_from_cache()
+        """
+        apiで返せるdict形式でチャンピオンデータ一覧を取得
+        """
+        champions = self.__repository.champions()
         result = []
         for champion in champions:
             result.append({

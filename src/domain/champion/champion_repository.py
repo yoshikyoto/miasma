@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime, timedelta
 import sys
 sys.path.append('../../')
 from infra.api.riot import ChampionApiClient
@@ -15,6 +16,9 @@ class ChampionRepository(object):
         self.__dao = ChampionDao()
 
     def champions_from_api(self):
+        """
+        DBのキャッシュを使わず、riot apiからチャンピオン一覧を取得
+        """
         champions = []
         champion_api_data = self.__champion_api.champions()
         for c in champion_api_data:
@@ -42,7 +46,7 @@ class ChampionRepository(object):
 
     def create_skill_from_api_spell(self, spell):
         """
-        imfra.api.riot.Spell から domain.spell.Spell を生成
+        infra.api.riot.Spell から domain.spell.Spell を生成
         """
         icon_url = self.__image_url_factory.skill_image_url(spell.get_image().get_filename())
         return Skill(
@@ -50,9 +54,24 @@ class ChampionRepository(object):
             spell.get_name(),
             icon_url)
 
+    def __is_expired(self, created_at):
+        """
+        dbにキャッシュが生成されたのが6時間以上前かどうかを判定
+        """
+        delta = datetime.now() - created_at
+        return delta > timedelta(hours=6)
+
     def champions_from_cache(self):
-        data = self.__dao.select_all()
+        """
+        dbのキャッシュからチャンピオン一覧を取得
+        キャッシュが古い場合は空配列がかえる
+        """
         champions = []
+        data = self.__dao.select_all()
+        if(len(data) < 1):
+            return champions
+        if(self.__is_expired(data[0]["created_at"])):
+            return champions
         for c in data:
             champions.append(Champion(
                 c["id"],
@@ -63,6 +82,18 @@ class ChampionRepository(object):
                 None,
                 None,
                 None))
+        return champions
+
+    def champions(self):
+        """
+        チャンピオン一覧を取得し
+        必要があればキャッシュに乗せる
+        """
+        champions = self.champions_from_cache()
+        if(len(champions) < 1):
+            champions = self.champions_from_api()
+            for champion in champions:
+                self.store_cache(champion)
         return champions
 
     def store_cache(self, champion):
@@ -82,3 +113,4 @@ if __name__ == "__main__":
     repository = ChampionRepository()
     champs = repository.champions_from_api()
     print champs[2].get_q().get_icon_url()
+    repository.champions_from_cache()
