@@ -1,3 +1,8 @@
 # -*- coding: utf-8 -*-
 
 RIOT_API_KEY = ""
+
+DB_HOST = "localhost"
+DB_USER = ""
+DB_PASSWORD = ""
+DB_NAME = "miasma"
