@@ -16,7 +16,7 @@ class ChampionService(object):
                 "name": champion.get_name(),
                 "icon_url": champion.get_icon_url(),
             });
-        return result
+        return {"data": result}
 
 if __name__ == "__main__":
     service = ChampionService()
