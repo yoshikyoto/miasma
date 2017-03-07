@@ -1,6 +1,5 @@
 Flask==0.10.1
 gunicorn==19.7.0
-lxml==3.5.0
 macholib==1.5.1
 Markdown==2.6.2
 MarkupSafe==0.23
