@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from dao import Dao
 
+# connectionやcommitのしかたがイマイチなので直したい
 class ChampionDao(Dao):
 
     def __init__(self):

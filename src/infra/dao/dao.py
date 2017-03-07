@@ -6,7 +6,7 @@ sys.path.append('../../')
 from config import config
 
 class Dao(object):
-    
+
     def __init__(self):
         self.host = config.DB_HOST
         self.db = config.DB_NAME

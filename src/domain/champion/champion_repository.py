@@ -2,6 +2,7 @@
 import sys
 sys.path.append('../../')
 from infra.api.riot import ChampionApiClient
+from infra.dao import ChampionDao
 from domain.image import ImageUrlFactory
 from domain.skill import Skill
 from champion import Champion
@@ -11,6 +12,7 @@ class ChampionRepository(object):
     def __init__(self):
         self.__champion_api = ChampionApiClient()
         self.__image_url_factory = ImageUrlFactory()
+        self.__dao = ChampionDao()
 
     def champions_from_api(self):
         champions = []
@@ -47,6 +49,19 @@ class ChampionRepository(object):
             spell.get_key(),
             spell.get_name(),
             icon_url)
+
+    def store_cache(self, champion):
+        """
+        apiから取得したデータなどをキャッシュ(DB)に書き込む
+        """
+        cache = self.__dao.select(champion.get_key())
+        if cache is not None:
+            self.__dao.delete(champion.get_key())
+        self.__dao.inesrt(
+            champion.get_id(),
+            champion.get_key(),
+            champion.get_name(),
+            champion.get_icon_url())
 
 if __name__ == "__main__":
     repository = ChampionRepository()
