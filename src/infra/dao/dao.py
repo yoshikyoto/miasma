@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import MySQLdb
+import psycopg2
+import psycopg2.extras
 
 import sys
 sys.path.append('../../')
@@ -9,16 +10,16 @@ class Dao(object):
 
     def __init__(self):
         self.host = config.DB_HOST
-        self.db = config.DB_NAME
+        self.db_name = config.DB_NAME
         self.user = config.DB_USER
         self.password = config.DB_PASSWORD
 
     def connect(self):
-        return MySQLdb.connect(
-            host=self.host,
-            db=self.db,
-            user=self.user,
-            passwd=self.password)
+        return psycopg2.connect(
+            "host=" + self.host +
+            " dbname=" + self.db_name +
+            " user=" + self.user +
+            " password=" + self.password)
 
     def cursor(self, connection):
-        return connection.cursor(MySQLdb.cursors.DictCursor)
+        return connection.cursor(cursor_factory=psycopg2.extras.DictCursor)

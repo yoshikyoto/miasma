@@ -50,3 +50,4 @@ watchdog==0.8.3
 Werkzeug==0.10.4
 xattr==0.6.4
 zope.interface==4.1.1
+psycopg2==2.7

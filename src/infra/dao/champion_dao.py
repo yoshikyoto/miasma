@@ -10,7 +10,7 @@ class ChampionDao(Dao):
     def select_all(self):
         connection = super(ChampionDao, self).connect()
         cursor = super(ChampionDao, self).cursor(connection)
-        cursor.execute("SELECT * FROM `champion`")
+        cursor.execute("SELECT * FROM champion")
         result = cursor.fetchall()
         cursor.close()
         connection.close()
@@ -20,7 +20,7 @@ class ChampionDao(Dao):
         connection = super(ChampionDao, self).connect()
         cursor = super(ChampionDao, self).cursor(connection)
         cursor.execute(
-            "SELECT * FROM `champion` WHERE `key` = %s",
+            "SELECT * FROM champion WHERE key = %s",
             [key])
         result = cursor.fetchall()
         cursor.close()
@@ -35,7 +35,7 @@ class ChampionDao(Dao):
         cursor = super(ChampionDao, self).cursor(connection)
         cursor.execute(
             """
-            INSERT INTO `champion` (`id`, `key`, `name`, `icon_url`)
+            INSERT INTO champion (id, key, name, icon_url)
             VALUES (%s, %s, %s, %s)
             """,
             [id, key, name, icon_url])
@@ -47,7 +47,7 @@ class ChampionDao(Dao):
         connection = super(ChampionDao, self).connect()
         cursor = super(ChampionDao, self).cursor(connection)
         cursor.execute(
-            "DELETE FROM `champion` WHERE `key` = %s",
+            "DELETE FROM champion WHERE key = %s",
             [key])
         connection.commit()
         cursor.close()
