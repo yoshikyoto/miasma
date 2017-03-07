@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.append('../../')
-from domain.champion import ChampionRepository
+from champion_repository import ChampionRepository
 
 class ChampionService(object):
 

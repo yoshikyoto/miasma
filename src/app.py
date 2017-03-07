@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 from flask import Flask, render_template, jsonify
+import sys
+#rootディレクトリでgunicornした時に正しく動くようにする
+sys.path.append('src')
+sys.path.append('.')
 from domain.champion import ChampionService
 
 app = Flask(__name__)
