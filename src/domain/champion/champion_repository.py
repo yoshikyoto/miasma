@@ -50,6 +50,17 @@ class ChampionRepository(object):
             spell.get_name(),
             icon_url)
 
+    def champions_from_cache(self):
+        data = self.__dao.select_all()
+        champions = []
+        for c in data:
+            champions.append(Champion(
+                data["id"],
+                data["key"],
+                data["name"],
+                data["icon_url"]))
+        return champions
+
     def store_cache(self, champion):
         """
         apiから取得したデータなどをキャッシュ(DB)に書き込む
@@ -57,7 +68,7 @@ class ChampionRepository(object):
         cache = self.__dao.select(champion.get_key())
         if cache is not None:
             self.__dao.delete(champion.get_key())
-        self.__dao.inesrt(
+        self.__dao.insert(
             champion.get_id(),
             champion.get_key(),
             champion.get_name(),
