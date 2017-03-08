@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/yoshikyoto/miasma#readme",
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.15.3"
   }
 }
