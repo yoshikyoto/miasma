@@ -4,9 +4,7 @@
         el: '.champions',
         delimiters: ['[[', ']]'],
         data: {
-            champions: [],
-            someData: [],
-            input: "",
+            champions: []
         },
         created: function() {
             var self = this

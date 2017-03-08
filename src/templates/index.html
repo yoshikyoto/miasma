@@ -1,8 +1,16 @@
 <html>
   <head>
+    <script src="/static/scripts/vue.js"></script>
+    <script src="/static/scripts/index.js"></script>
     <title>トップページ - ミアズマ</title>
   </head>
   <body>
     <h1>ミアズマ</h1>
+    <div class="champions">
+      <span v-for="champion in champions">
+        <img :src=champion.icon_url>
+        [[champion.name]]
+      </span>
+    </div>
   </body>
 </html>
