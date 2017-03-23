@@ -1,34 +1,9 @@
 <html>
   <head>
-    {# Materialize css http://materializecss.com/getting-started.html #}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-    {# vue.js #}
-    <script src="/static/scripts/vue.js"></script>
-    <script src="/static/scripts/index.js"></script>
-    <link rel="stylesheet"  href="/static/styles/main.css">
-    <link rel="stylesheet"  href="/static/styles/champions.css"></script>
     <title>トップページ - ミアズマ</title>
+    <script src="/static/scripts/bundle.js"></script>
   </head>
-  <body class="brown darken-4 brown-text text-lighten-5">
-    {# Materialize nav bar http://materializecss.com/navbar.html #}
-    <nav class="brown darken-3">
-      <a href="/" class="miasma-logo brand-logo">ミアズマ</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/">チャンピオン</a></li>
-        <li><a href="items">アイテム</a></li>
-      </ul>
-    </nav>
-
-    <div class="row champions">
-      <div class="col s6 m4 l2 center-align" v-for="champion in champions">
-        <div>
-          <img :src=champion.icon_url>
-        </div>
-        <div class="center-align">
-          [[champion.name]]
-        </div>
-      </div>
-    </div>
+  <body>
+    <div id="root"></div>
   </body>
 </html>
