@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
 import Axios from 'axios'
 import {renderChampions} from './reducer.js'
 import Champion from './champion.js'
