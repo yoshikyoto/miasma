@@ -16,6 +16,8 @@ class ChampionService(object):
         result = []
         for champion in champions:
             result.append({
+                "key": champion.get_key(),
+                "id": champion.get_id(),
                 "name": champion.get_name(),
                 "icon_url": champion.get_icon_url(),
             });
