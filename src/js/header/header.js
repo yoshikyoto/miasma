@@ -1,24 +1,20 @@
 import React, {PropTypes, Component} from 'react'
 import {AppBar} from 'material-ui'
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import FlatButton from 'material-ui/FlatButton';
 
 
-class Header extends Component {
+export default class Header extends Component {
     static get childContextTypes() {
-        return { muiTheme: React.PropTypes.object };
+        return { muiTheme: React.PropTypes.object }
     }
 
     render() {
         return (
-                <header className="header">
-                <AppBar
-            title="LoLProBuildJP"
-                iconClassNameRight="muidocs-icon-navigation-expand-more" />
-                </header>
+            <header className="header">
+            <AppBar
+            title="LoLProBuild"
+            iconElementRight={<FlatButton label="チャンピオン一覧" />} />
+            </header>
         )
     }
 }
-
-export default Header

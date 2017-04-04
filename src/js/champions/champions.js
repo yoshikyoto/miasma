@@ -1,18 +1,37 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {GridList, GridTile} from 'material-ui/GridList';
 import Axios from 'axios'
 import {renderChampions} from './reducer.js'
 import Champion from './champion.js'
 
 /** チャンピオン一覧 */
 class Champions extends Component {
+
+
     render() {
         return (
-                <div onLoad={this.getChampions()}>
-                {this.props.champions.map((champion) => {
-                    return <Champion champion={champion}/>
-                })}
-                </div>
+            <div onload={this.getChampions()}>
+            <GridList
+            cellHeight={120}
+            cols={6}
+            padding={10}
+            style={{
+                width: 770, // 120 * 6 + 10 * 5 = 720 + 50
+                marginLeft: 'auto',
+                marginRight: 'auto',
+            }}>
+            {this.props.champions.map((champion) => {
+                return (
+                    <GridTile
+                    key={champion.key}
+                    title={champion.name}>
+                    <img src={champion.icon_url} />
+                    </GridTile>
+                )
+            })}
+            </GridList>
+            </div>
         )
     }
 
