@@ -7,6 +7,7 @@ const initialState = {
 
 const RENDER_ALL_CHAMPIONS = 'RENDER_ALL_CHAMPIONS'
 const RENDER_PARTIAL_CHAMPIONS = 'RENDER_PARTIAL_CHAMPIONS'
+const SEARCH_CHAMPIONS = 'SEARCH_CHAMPIONS'
 
 /** 全部のチャンピオンを描画する（初期化処理的な） */
 export function renderAllChampions(champions) {
@@ -28,6 +29,16 @@ export function renderPartialChampions(champions) {
     }
 }
 
+export function searchChampions(keyword) {
+    console.log(keyword)
+    return {
+        type: SEARCH_CHAMPIONS,
+        data: {
+            keyword: keyword
+        }
+    }
+}
+
 export default function reducer(state = initialState, action) {
     switch(action.type) {
     case RENDER_ALL_CHAMPIONS:
@@ -39,7 +50,37 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             champions: action.data.champions
         })
+    case SEARCH_CHAMPIONS:
+        // TODO ロジックがここにあるのはどうなのか
+        var keyword = removeExceptKatakana(hiraganaToKatagana(action.data.keyword)).toLowerCase()
+        var champions = state.allChampions
+        if(keyword.length != 0) {
+            console.log(keyword);
+            champions = champions.filter((champion) => {
+                if(champion.key.toLowerCase().indexOf(keyword) != -1) {
+                    return true
+                }
+                if(removeExceptKatakana(champion.name).indexOf(keyword) != -1) {
+                    return true
+                }
+                return false
+            })
+        }
+        return Object.assign({}, state, {
+            champions: champions
+        })
     default:
         return state
     }
+}
+
+function hiraganaToKatagana(src) {
+    return src.replace(/[\u3041-\u3096]/g, function(match) {
+        var chr = match.charCodeAt(0) + 0x60;
+        return String.fromCharCode(chr);
+    });
+}
+
+function removeExceptKatakana(src) {
+    return src.replace(/[^ァ-ンーA-Za-z]+/g, '')
 }

@@ -5,7 +5,7 @@ import Subheader from 'material-ui/Subheader'
 import TextField from 'material-ui/TextField'
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar'
 import Axios from 'axios'
-import {renderAllChampions, renderPartialChampions} from './reducer.js'
+import {renderAllChampions, renderPartialChampions, searchChampions} from './reducer.js'
 
 /** チャンピオン一覧 */
 class Champions extends Component {
@@ -19,8 +19,7 @@ class Champions extends Component {
             <ToolbarGroup firstChild={true}>
             <TextField
             hintText="チャンピオンを検索"
-            onChange={this.searchChampions}
-            props={this.proos}/>
+            onChange={this.props.searchChampions}/>
             </ToolbarGroup>
             </Toolbar>
             
@@ -60,15 +59,6 @@ class Champions extends Component {
             });
         }
     }
-
-    searchChampions(event, newValue) {
-        console.log("searchChampions: " + newValue);
-        console.log(this);
-        console.log(this.props);
-        console.log(event);
-            
-        props.renderPartialChampions([])
-    }
 }
 
 function mapStateToProps(state) {
@@ -82,6 +72,9 @@ function mapDispatchToProps(dispatch) {
     return {
         renderAllChampions: (champions) => {
             dispatch(renderAllChampions(champions))
+        },
+        searchChampions: (event, newValue) => {
+            dispatch(searchChampions(newValue))
         },
         renderPartialChampions: (champions) => {
             dispatch(renderPartialChampions(champions))
