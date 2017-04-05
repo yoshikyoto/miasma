@@ -12,7 +12,7 @@ export default class Header extends Component {
         return (
             <header className="header">
             <AppBar
-            title="LoLProBuild"
+            title="ミアズマ"
             iconElementRight={<FlatButton label="チャンピオン一覧" />} />
             </header>
         )
