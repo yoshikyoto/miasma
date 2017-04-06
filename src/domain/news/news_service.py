@@ -9,8 +9,8 @@ class NewsService(object):
     def __init__(self):
         self.__dao = NewsDao()
 
-    def get_news_api_response(self):
-        return self.__dao.get_news()
+    def get_news_dict(self):
+        return {"data": self.__dao.get_news()}
 
 if __name__ == "__main__":
     service = NewsService()
