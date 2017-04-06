@@ -2,6 +2,11 @@
 
 news = [
     {
+        "date": "2017/04/07",
+        "text": "Scarz Arford 選手がプロプレイヤー引退",
+        "link": "https://twitter.com/arfoad/status/849886100734722048",
+    },
+    {
         "date": "2017/04/06",
         "text": "ScarzからKazu, Day1, Arford, DayDream の4人が脱退",
         "link": "http://www.scarz.net/lol/1931",
