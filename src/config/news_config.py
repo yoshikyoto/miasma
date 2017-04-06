@@ -3,6 +3,11 @@
 news = [
     {
         "date": "2017/04/07",
+        "text": "MSI 2017 スケジュール情報",
+        "link": "https://jp.lolesports.com/news/msi2017schedule",
+    },
+    {
+        "date": "2017/04/07",
         "text": "Scarz Arford 選手がプロプレイヤー引退",
         "link": "https://twitter.com/arfoad/status/849886100734722048",
     },
