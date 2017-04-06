@@ -11,9 +11,11 @@ import {renderAllChampions, renderPartialChampions, searchChampions} from './red
 class Champions extends Component {
 
     render() {
+        if(this.props.champions.length <= 0) {
+            this.getChampions()
+        }
         return (
-            <div onload={this.getChampions()}>
-            
+            <div>
             <Toolbar>
             <ToolbarTitle text="チャンピオン一覧" />
             <ToolbarGroup firstChild={true}>

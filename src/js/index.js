@@ -8,6 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Champions from './champions/champions.js'
 import reducer from './reducer.js'
 import Header from './header/header.js'
+import News from './components/news/news.js'
 
 /** reactでtapイベントを取るのに必要らしい */
 injectTapEventPlugin()
@@ -20,6 +21,7 @@ window.onload = function () {
           <Provider store={store}>
             <div>
               <Header />
+              <News />
               <Champions />
             </div>
           </Provider>
