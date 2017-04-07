@@ -8,8 +8,9 @@ class ItemApiClient(RiotApiClient):
         self.base_url = "https://global.api.pvp.net"
         self.path = "/api/lol/static-data/jp/v1.2/item"
 
-    def items(self):
-        response = super(ItemApiClient, self).get(self.path, {})
+    def items(self, item_list_data="all"):
+        params = {"itemListData": item_list_data}
+        response = super(ItemApiClient, self).get(self.path, params)
         return response
 
 if __name__ == "__main__":
