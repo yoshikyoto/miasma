@@ -52,14 +52,14 @@ class ItemRepository(object):
     def items_from_cache(self):
         items = []
         data = self.__dao.select_all()
-        if(lem(data) < 1):
-            return champions
+        if(len(data) < 1):
+            return items
         for i in data:
             items.append(Item(
                 i["id"],
                 i["name"],
                 i["description_html"],
-                i["icon_urk"]))
+                i["icon_url"]))
         return items
             
 

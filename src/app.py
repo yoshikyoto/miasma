@@ -7,6 +7,7 @@ sys.path.append('src')
 sys.path.append('.')
 from domain.champion import ChampionService
 from domain.news import NewsService
+from domain.item import ItemService
 
 app = Flask(__name__)
 
@@ -18,6 +19,11 @@ def index():
 def champions():
     service = ChampionService()
     return jsonify(service.champions_dict())
+
+@app.route("/api/v1/items.json")
+def items():
+    service = ItemService()
+    return jsonify(service.items_dict())
 
 @app.route("/api/v1/news.json")
 def news():
