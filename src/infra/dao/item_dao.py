@@ -16,6 +16,20 @@ class ItemDao(Dao):
         connection.close()
         return result
 
+    def select(self, id):
+        connection = super(ItemDao, self).connect()
+        cursor = super(ItemDao, self).cursor(connection)
+        cursor.execute(
+            "SELECT * FROM item WHERE id = %s",
+            [id])
+        result = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        if(len(result) < 1):
+            return None
+        else:
+            return result[0]
+
     def insert(self, id, name, description_html, icon_url):
         connection = super(ItemDao, self).connect()
         cursor = super(ItemDao, self).cursor(connection)
