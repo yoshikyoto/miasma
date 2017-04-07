@@ -12,7 +12,6 @@ class SummonerApiClient(RiotApiClient):
         response = super(SummonerApiClient, self).get(path, {})
         return response
 
-
 if __name__ == "__main__":
     api = SummonerApiClient()
     print api.get_by_name("うたかた")
