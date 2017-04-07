@@ -28,6 +28,11 @@ class ImageUrlFactory(object):
         url = realm.get_cdn() + "/" + realm.get_version() + "/img/spell/" + filename
         return url
 
+    def item_image_url(self, filename):
+        realm = self.__get_realm()
+        url = realm.get_cdn() + "/" + realm.get_version() + "/img/item/" + filename
+        return url
+
 
 if __name__ == "__main__":
     factory = ImageUrlFactory()
@@ -37,3 +42,5 @@ if __name__ == "__main__":
     print factory.champion_image_url("Ahri.png")
     print factory.skill_image_url("AhriOrbofDeception.png")
     print factory.skill_image_url("AhriOrbofDeception.png")
+    print factory.item_image_url("3715.png")
+    print factory.item_image_url("3715.png")
