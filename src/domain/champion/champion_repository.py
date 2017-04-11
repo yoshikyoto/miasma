@@ -109,6 +109,14 @@ class ChampionRepository(object):
             champion.get_name(),
             champion.get_icon_url())
 
+    def champion_by_id(self, id):
+        cache = self.__dao.get_by_id(id)
+        return Champion(
+            cache["id"],
+            cache["key"],
+            cache["name"],
+            cache["icon_url"])
+
 if __name__ == "__main__":
     repository = ChampionRepository()
     champs = repository.champions_from_api()

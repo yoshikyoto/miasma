@@ -2,7 +2,7 @@
 
 class Champion(object):
 
-    def __init__(self, id, key, name, icon_url, q, w, e, r):
+    def __init__(self, id, key, name, icon_url, q=None, w=None, e=None, r=None):
         self.__id = id
         self.__key = key
         self.__name = name
