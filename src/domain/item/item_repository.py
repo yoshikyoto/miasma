@@ -49,6 +49,14 @@ class ItemRepository(object):
             item.get_description_html(),
             item.get_icon_url())
 
+    def item_by_id(self, id):
+        data = self.__dao.select(id)
+        return Item(
+            data["id"],
+            data["name"],
+            data["description_html"],
+            data["icon_url"])
+
     def items_from_cache(self):
         items = []
         data = self.__dao.select_all()
