@@ -7,10 +7,10 @@ class LeagueApiClient(RiotApiClient):
         super(LeagueApiClient, self).__init__()
         self.base_url = "https://jp.api.pvp.net"
 
-    def challenger(self, type):
+    def challenger(self, type="RANKED_SOLO_5x5"):
         return self.get("challenger", type)
 
-    def master(self, type):
+    def master(self, type="RANKED_SOLO_5x5"):
         return self.get("master", type)
 
     def get(self, tier, type):
@@ -23,14 +23,14 @@ class LeagueApiClient(RiotApiClient):
 if __name__ == "__main__":
     api = LeagueApiClient()
 
-    challenger = api.challenger("RANKED_SOLO_5x5")
+    challenger = api.challenger()
     print challenger.keys()
     ce = challenger["entries"]
     print len(ce)
     for e in ce:
         print e["playerOrTeamName"]
 
-    master = api.master("RANKED_SOLO_5x5")
+    master = api.master()
     print master.keys()
     me = master["entries"]
     print len(me)
