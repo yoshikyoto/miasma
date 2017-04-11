@@ -16,4 +16,4 @@ if __name__ == "__main__":
     api = StatsApiClient()
     # Roki
     response = api.ranked_stats_by_summoner_id(6312300)
-    print response.keys()
+    print len(response["champions"])

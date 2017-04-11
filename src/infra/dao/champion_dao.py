@@ -30,6 +30,21 @@ class ChampionDao(Dao):
         else:
             return result[0]
 
+    def get_by_id(self, id):
+        connection = super(ChampionDao, self).connect()
+        cursor = super(ChampionDao, self).cursor(connection)
+        cursor.execute(
+            "SELECT * FROM champion WHERE id = %s",
+            [id])
+        result = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        if(len(result) < 1):
+            return None
+        else:
+            return result[0]
+
+
     def insert(self, id, key, name, icon_url):
         connection = super(ChampionDao, self).connect()
         cursor = super(ChampionDao, self).cursor(connection)
