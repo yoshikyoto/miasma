@@ -23,6 +23,14 @@ class ChampionService(object):
             });
         return {"data": result}
 
+    def get_champions_with_id_key(self):
+        champions = self.__repository.champions_from_cache()
+        result = {}
+        for champion in champions:
+            result[champion.get_id()] = champion
+        return result
+
 if __name__ == "__main__":
     service = ChampionService()
     print service.champions_dict()
+    print service.get_champions_with_id_key()
