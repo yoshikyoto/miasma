@@ -7,6 +7,7 @@ class ChampionService(object):
 
     def __init__(self):
         self.__repository = ChampionRepository()
+        self.__champions_onmemory_cache = []
 
     def champions_dict(self):
         """
@@ -23,12 +24,17 @@ class ChampionService(object):
             });
         return {"data": result}
 
-    def get_champions_with_id_key(self):
-        champions = self.__repository.champions_from_cache()
-        result = {}
-        for champion in champions:
-            result[champion.get_id()] = champion
-        return result
+    def get_champion_by_id(self, id):
+        """
+        オンメモリにキャッシュしていい感じにする
+        """
+        if len(self.__champions_onmemory_cache) == 0:
+            champions = self.__repository.champions_from_cache()
+            result = {}
+            for champion in champions:
+                result[champion.get_id()] = champion
+            self.__champions_onmemory_cache = result
+        return self.__champions_onmemory_cache[id]
 
 if __name__ == "__main__":
     service = ChampionService()
