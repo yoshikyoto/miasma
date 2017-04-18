@@ -27,9 +27,10 @@ class ChampionService(object):
     def get_champion_by_id(self, id):
         """
         オンメモリにキャッシュしていい感じにする
+        id(int): Championオブジェクト のハッシュ
         """
         if len(self.__champions_onmemory_cache) == 0:
-            champions = self.__repository.champions_from_cache()
+            champions = self.__repository.champions()
             result = {}
             for champion in champions:
                 result[champion.get_id()] = champion
